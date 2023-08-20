@@ -17,7 +17,7 @@ class AppText extends StatelessWidget {
     this.height = 19 / 16,
     this.size = 16,
     required this.text,
-    required this.textStyle,
+    this.textStyle,
     this.color,
     this.align,
   });

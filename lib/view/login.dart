@@ -1,8 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/core/di/locator.dart';
+import 'package:portfolio/core/routes/app_router.gr.dart';
 import 'package:portfolio/core/service/auth.dart';
 import 'package:portfolio/shared_widgets/app_button.dart';
 import 'package:portfolio/shared_widgets/input_field.dart';
@@ -53,10 +56,14 @@ class LoginView extends StatelessWidget {
             Observer(builder: (context) {
               return AppButton(
                 isLoading: state.isLoading,
-                onPress: () {
+                onPress: () async {
                   state.setLoading(true);
-                  authService.signUp(
+                  final res = await authService.signUp(
                       email: state.email ?? '', password: state.password ?? '');
+                  state.setLoading(false);
+                  if (res == null) {
+                    context.router.popAndPush(const HomeView());
+                  }
                 },
               );
             })

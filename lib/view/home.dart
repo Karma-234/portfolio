@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/shared_widgets/app_text.dart';
 
 @RoutePage()
 class HomeView extends StatelessWidget {
@@ -7,6 +8,16 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: const Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          AppText(
+            text: 'Welcome Home',
+          ),
+        ],
+      ),
+    );
   }
 }

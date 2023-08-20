@@ -5,8 +5,16 @@ import 'package:portfolio/utils/extensions.dart';
 class AppInputField extends StatelessWidget {
   final String hint;
   final String header;
+  final bool obscureText;
+  final TextEditingController? controller;
+  final ValueChanged<String?>? onChanged;
   const AppInputField(
-      {super.key, this.hint = 'Input', this.header = 'Teaxt Header'});
+      {super.key,
+      this.hint = 'Input',
+      this.header = 'Teaxt Header',
+      this.controller,
+      this.obscureText = false,
+      this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +29,9 @@ class AppInputField extends StatelessWidget {
       ),
     );
     return TextFormField(
+      controller: controller,
+      onChanged: onChanged,
+      obscureText: obscureText,
       decoration: InputDecoration(
           hintText: hint,
           border: border,
