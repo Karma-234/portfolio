@@ -15,7 +15,12 @@ extension Header on TextFormField {
   addHeader(String text) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [Text(text), this].separate(6.h),
+      children: [
+        Text(
+          text,
+        ),
+        this
+      ].separate(6.h),
     );
   }
 }
