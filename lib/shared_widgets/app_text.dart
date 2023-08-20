@@ -42,6 +42,7 @@ class AppText extends StatelessWidget {
     required String text,
     Color? textColor,
     TextStyle? textStyle,
+    TextAlign? align,
     Color? color,
     Key? key,
   }) {
@@ -49,9 +50,9 @@ class AppText extends StatelessWidget {
       key: key,
       height: 40 / 35,
       text: text,
-      textStyle: textStyle ?? GoogleFonts.inter(),
       color: color,
       size: 35.sp,
+      align: align,
     );
   }
 

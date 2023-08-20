@@ -6,6 +6,7 @@ class AppInputField extends StatelessWidget {
   final String hint;
   final String header;
   final bool obscureText;
+  final Widget? suffixIcon;
   final TextEditingController? controller;
   final ValueChanged<String?>? onChanged;
   const AppInputField(
@@ -14,7 +15,8 @@ class AppInputField extends StatelessWidget {
       this.header = 'Teaxt Header',
       this.controller,
       this.obscureText = false,
-      this.onChanged});
+      this.onChanged,
+      this.suffixIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class AppInputField extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
           hintText: hint,
+          suffixIcon: suffixIcon,
           border: border,
           enabledBorder: border,
           focusedBorder: focusBorder),

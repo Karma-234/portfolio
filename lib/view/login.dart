@@ -1,7 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/core/di/locator.dart';
@@ -24,18 +27,18 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  late TextEditingController controller;
+  late TextEditingController _controller;
   late final state = LoginState();
   late final authService = locator<AppAuthenticationService>();
   @override
   void initState() {
     super.initState();
-    controller = TextEditingController();
+    _controller = TextEditingController();
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -48,10 +51,10 @@ class _LoginViewState extends State<LoginView> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Welcome',
-              textAlign: TextAlign.center,
-            ),
+            AppText.xl(
+                text: 'Welcome',
+                align: TextAlign.center,
+                color: const Color.fromARGB(255, 156, 143, 143)),
             AppInputField(
               hint: 'Enter email',
               header: 'Email',
@@ -60,7 +63,19 @@ class _LoginViewState extends State<LoginView> {
             AppInputField(
               hint: 'Enter password',
               header: 'Password',
-              controller: controller,
+              controller: _controller,
+              suffixIcon: IconButton(
+                icon: const Icon(
+                  Icons.copy,
+                  color: Colors.blue,
+                ),
+                onPressed: () {
+                  final data = ClipboardData(text: _controller.text);
+                  Clipboard.setData(data);
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: AppText(text: 'Password copied to clipboard!')));
+                },
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -68,26 +83,27 @@ class _LoginViewState extends State<LoginView> {
                 const Text('New user?'),
                 TextButton(
                   onPressed: () {
-                    controller.text = generatePassword();
+                    _controller.text = generatePassword();
                   },
                   child: const Text('Generate password'),
                 )
-              ].separate(4.w),
+              ],
             ),
             Observer(builder: (context) {
               return AppButton(
                 isLoading: state.isLoading,
                 onPress: () async {
                   state.setLoading(true);
-                  final res = await authService.signUp(
-                      email: state.email ?? '', password: state.password ?? '');
-                  state.setLoading(false);
-                  if (res == null) {
-                    context.router.popAndPush(const HomeView());
-                  } else {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: AppText(text: res)));
-                  }
+
+                  // final res = await authService.signUp(
+                  //     email: state.email ?? '', password: state.password ?? '');
+                  // state.setLoading(false);
+                  // if (res == null) {
+                  //   context.router.popAndPush(const HomeView());
+                  // } else {
+                  //   ScaffoldMessenger.of(context)
+                  //       .showSnackBar(SnackBar(content: AppText(text: res)));
+                  // }
                 },
               );
             })

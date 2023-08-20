@@ -15,6 +15,10 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: isLoading ? null : onPress,
+      style: ElevatedButton.styleFrom(
+          shape: isLoading
+              ? const CircleBorder()
+              : const RoundedRectangleBorder()),
       child: isLoading
           ? const CupertinoActivityIndicator(
               color: Colors.black,
