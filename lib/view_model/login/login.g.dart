@@ -13,13 +13,13 @@ mixin _$LoginState on AbstractLoginState, Store {
       Atom(name: 'AbstractLoginState.email', context: context);
 
   @override
-  String? get email {
+  String get email {
     _$emailAtom.reportRead();
     return super.email;
   }
 
   @override
-  set email(String? value) {
+  set email(String value) {
     _$emailAtom.reportWrite(value, super.email, () {
       super.email = value;
     });
@@ -29,13 +29,13 @@ mixin _$LoginState on AbstractLoginState, Store {
       Atom(name: 'AbstractLoginState.password', context: context);
 
   @override
-  String? get password {
+  String get password {
     _$passwordAtom.reportRead();
     return super.password;
   }
 
   @override
-  set password(String? value) {
+  set password(String value) {
     _$passwordAtom.reportWrite(value, super.password, () {
       super.password = value;
     });

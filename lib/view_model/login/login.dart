@@ -5,10 +5,10 @@ class LoginState = AbstractLoginState with _$LoginState;
 
 abstract class AbstractLoginState with Store {
   @observable
-  String? email;
+  String email = '';
 
   @observable
-  String? password;
+  String password = '';
 
   @observable
   bool isLoading = false;

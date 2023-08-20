@@ -64,6 +64,7 @@ class _LoginViewState extends State<LoginView> {
               hint: 'Enter password',
               header: 'Password',
               controller: _controller,
+              onChanged: (value) => state.setPassword(value),
               suffixIcon: IconButton(
                 icon: const Icon(
                   Icons.copy,
@@ -95,15 +96,15 @@ class _LoginViewState extends State<LoginView> {
                 onPress: () async {
                   state.setLoading(true);
 
-                  // final res = await authService.signUp(
-                  //     email: state.email ?? '', password: state.password ?? '');
-                  // state.setLoading(false);
-                  // if (res == null) {
-                  //   context.router.popAndPush(const HomeView());
-                  // } else {
-                  //   ScaffoldMessenger.of(context)
-                  //       .showSnackBar(SnackBar(content: AppText(text: res)));
-                  // }
+                  final res = await authService.signUp(
+                      email: state.email, password: state.password);
+                  state.setLoading(false);
+                  if (res == null) {
+                    context.router.popAndPush(const HomeView());
+                  } else {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: AppText(text: res)));
+                  }
                 },
               );
             })

@@ -15,10 +15,10 @@ class AppAuthenticationService {
     }
   }
 
-  Future<String?> login(LoginPayload payload) async {
+  Future<String?> login(
+      {required String email, required String password}) async {
     try {
-      await _auth.signInWithEmailAndPassword(
-          email: payload.email, password: payload.password);
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
       return null;
     } on FirebaseAuthException catch (e) {
       return e.code;
