@@ -4,20 +4,24 @@ import 'package:portfolio/model/login.dart';
 class AppAuthenticationService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  signUp({required String email, required String password}) {
+  Future<String?> signUp(
+      {required String email, required String password}) async {
     try {
-      _auth.createUserWithEmailAndPassword(email: email, password: password);
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return null;
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      return e.code;
     }
   }
 
-  login(LoginPayload payload) {
+  Future<String?> login(LoginPayload payload) async {
     try {
-      _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
           email: payload.email, password: payload.password);
+      return null;
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      return e.code;
     }
   }
 }

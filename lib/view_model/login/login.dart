@@ -17,9 +17,9 @@ abstract class AbstractLoginState with Store {
   bool isNewUser = false;
 
   @action
-  setEmail(String entry) => email = entry;
+  setEmail(String? entry) => email = entry ?? '';
   @action
-  setPassword(String entry) => password = entry;
+  setPassword(String? entry) => password = entry ?? "";
   @action
   setLoading(bool entry) => isLoading = entry;
 

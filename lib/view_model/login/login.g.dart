@@ -57,11 +57,27 @@ mixin _$LoginState on AbstractLoginState, Store {
     });
   }
 
+  late final _$isNewUserAtom =
+      Atom(name: 'AbstractLoginState.isNewUser', context: context);
+
+  @override
+  bool get isNewUser {
+    _$isNewUserAtom.reportRead();
+    return super.isNewUser;
+  }
+
+  @override
+  set isNewUser(bool value) {
+    _$isNewUserAtom.reportWrite(value, super.isNewUser, () {
+      super.isNewUser = value;
+    });
+  }
+
   late final _$AbstractLoginStateActionController =
       ActionController(name: 'AbstractLoginState', context: context);
 
   @override
-  dynamic setEmail(String entry) {
+  dynamic setEmail(String? entry) {
     final _$actionInfo = _$AbstractLoginStateActionController.startAction(
         name: 'AbstractLoginState.setEmail');
     try {
@@ -72,7 +88,7 @@ mixin _$LoginState on AbstractLoginState, Store {
   }
 
   @override
-  dynamic setPassword(String entry) {
+  dynamic setPassword(String? entry) {
     final _$actionInfo = _$AbstractLoginStateActionController.startAction(
         name: 'AbstractLoginState.setPassword');
     try {
@@ -94,11 +110,23 @@ mixin _$LoginState on AbstractLoginState, Store {
   }
 
   @override
+  dynamic toggleNewUser() {
+    final _$actionInfo = _$AbstractLoginStateActionController.startAction(
+        name: 'AbstractLoginState.toggleNewUser');
+    try {
+      return super.toggleNewUser();
+    } finally {
+      _$AbstractLoginStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 email: ${email},
 password: ${password},
-isLoading: ${isLoading}
+isLoading: ${isLoading},
+isNewUser: ${isNewUser}
     ''';
   }
 }

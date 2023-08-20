@@ -8,6 +8,7 @@ import 'package:portfolio/core/di/locator.dart';
 import 'package:portfolio/core/routes/app_router.gr.dart';
 import 'package:portfolio/core/service/auth.dart';
 import 'package:portfolio/shared_widgets/app_button.dart';
+import 'package:portfolio/shared_widgets/app_text.dart';
 import 'package:portfolio/shared_widgets/input_field.dart';
 import 'package:portfolio/utils/extensions.dart';
 import 'package:portfolio/utils/password_generator.dart';
@@ -15,13 +16,31 @@ import 'package:portfolio/utils/password_generator.dart';
 import 'package:portfolio/view_model/login/login.dart';
 
 @RoutePage()
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
   @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  late TextEditingController controller;
+  late final state = LoginState();
+  late final authService = locator<AppAuthenticationService>();
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    late final state = LoginState();
-    late final authService = locator<AppAuthenticationService>();
     return Scaffold(
       body: SafeArea(
         minimum: EdgeInsets.all(16.r),
@@ -33,13 +52,15 @@ class LoginView extends StatelessWidget {
               'Welcome',
               textAlign: TextAlign.center,
             ),
-            const AppInputField(
+            AppInputField(
               hint: 'Enter email',
               header: 'Email',
+              onChanged: (value) => state.setEmail(value ?? ''),
             ),
-            const AppInputField(
+            AppInputField(
               hint: 'Enter password',
               header: 'Password',
+              controller: controller,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -47,7 +68,7 @@ class LoginView extends StatelessWidget {
                 const Text('New user?'),
                 TextButton(
                   onPressed: () {
-                    generatePassword();
+                    controller.text = generatePassword();
                   },
                   child: const Text('Generate password'),
                 )
@@ -63,6 +84,9 @@ class LoginView extends StatelessWidget {
                   state.setLoading(false);
                   if (res == null) {
                     context.router.popAndPush(const HomeView());
+                  } else {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: AppText(text: res)));
                   }
                 },
               );

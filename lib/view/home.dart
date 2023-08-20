@@ -10,13 +10,15 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
-      child: const Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          AppText(
-            text: 'Welcome Home',
-          ),
-        ],
+      child: const Scaffold(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AppText(
+              text: 'Welcome Home',
+            ),
+          ],
+        ),
       ),
     );
   }

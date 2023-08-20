@@ -20,12 +20,12 @@ class AppInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     late final border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(12.r),
-      borderSide: const BorderSide(color: Colors.blue),
+      borderSide: const BorderSide(color: Color.fromARGB(255, 6, 91, 160)),
     );
     late final focusBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(12.r),
       borderSide: const BorderSide(
-        color: Color.fromARGB(255, 6, 91, 160),
+        color: Colors.blue,
       ),
     );
     return TextFormField(
