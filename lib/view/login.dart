@@ -2,9 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:portfolio/core/di/locator.dart';
+import 'package:portfolio/core/service/auth.dart';
 import 'package:portfolio/shared_widgets/app_button.dart';
 import 'package:portfolio/shared_widgets/input_field.dart';
 import 'package:portfolio/utils/extensions.dart';
+import 'package:portfolio/utils/password_generator.dart';
 
 import 'package:portfolio/view_model/login/login.dart';
 
@@ -15,6 +18,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late final state = LoginState();
+    late final authService = locator<AppAuthenticationService>();
     return Scaffold(
       body: SafeArea(
         minimum: EdgeInsets.all(16.r),
@@ -34,9 +38,26 @@ class LoginView extends StatelessWidget {
               hint: 'Enter password',
               header: 'Password',
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                const Text('New user?'),
+                TextButton(
+                  onPressed: () {
+                    generatePassword();
+                  },
+                  child: const Text('Generate password'),
+                )
+              ].separate(4.w),
+            ),
             Observer(builder: (context) {
               return AppButton(
-                onPress: () {},
+                isLoading: state.isLoading,
+                onPress: () {
+                  state.setLoading(true);
+                  authService.signUp(
+                      email: state.email ?? '', password: state.password ?? '');
+                },
               );
             })
           ].separate(16.h),
