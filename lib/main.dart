@@ -16,6 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await setUpDependencies();
+
   _setUpLogging();
   runApp(const MainApp());
 }

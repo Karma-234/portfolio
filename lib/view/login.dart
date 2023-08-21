@@ -26,7 +26,9 @@ class LoginView extends StatefulWidget {
   State<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginViewState extends State<LoginView>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
   late TextEditingController _controller;
   late final state = LoginState();
   late final authService = locator<AppAuthenticationService>();
@@ -34,6 +36,7 @@ class _LoginViewState extends State<LoginView> {
   void initState() {
     super.initState();
     _controller = TextEditingController();
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -54,7 +57,7 @@ class _LoginViewState extends State<LoginView> {
             AppText.xl(
                 text: 'Welcome',
                 align: TextAlign.center,
-                color: const Color.fromARGB(255, 156, 143, 143)),
+                color: const Color.fromARGB(255, 30, 116, 187)),
             AppInputField(
               hint: 'Enter email',
               header: 'Email',
