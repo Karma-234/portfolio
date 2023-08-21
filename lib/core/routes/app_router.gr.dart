@@ -8,25 +8,32 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i3;
+import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:portfolio/view/home.dart' as _i1;
 import 'package:portfolio/view/login.dart' as _i2;
+import 'package:portfolio/view/repositories.dart' as _i3;
 
-abstract class $AppRouter extends _i3.RootStackRouter {
+abstract class $AppRouter extends _i4.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i3.PageFactory> pagesMap = {
+  final Map<String, _i4.PageFactory> pagesMap = {
     HomeView.name: (routeData) {
-      return _i3.AutoRoutePage<dynamic>(
+      return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.HomeView(),
       );
     },
     LoginView.name: (routeData) {
-      return _i3.AutoRoutePage<dynamic>(
+      return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i2.LoginView(),
+      );
+    },
+    RepositoryView.name: (routeData) {
+      return _i4.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.RepositoryView(),
       );
     },
   };
@@ -34,8 +41,8 @@ abstract class $AppRouter extends _i3.RootStackRouter {
 
 /// generated route for
 /// [_i1.HomeView]
-class HomeView extends _i3.PageRouteInfo<void> {
-  const HomeView({List<_i3.PageRouteInfo>? children})
+class HomeView extends _i4.PageRouteInfo<void> {
+  const HomeView({List<_i4.PageRouteInfo>? children})
       : super(
           HomeView.name,
           initialChildren: children,
@@ -43,13 +50,13 @@ class HomeView extends _i3.PageRouteInfo<void> {
 
   static const String name = 'HomeView';
 
-  static const _i3.PageInfo<void> page = _i3.PageInfo<void>(name);
+  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.LoginView]
-class LoginView extends _i3.PageRouteInfo<void> {
-  const LoginView({List<_i3.PageRouteInfo>? children})
+class LoginView extends _i4.PageRouteInfo<void> {
+  const LoginView({List<_i4.PageRouteInfo>? children})
       : super(
           LoginView.name,
           initialChildren: children,
@@ -57,5 +64,19 @@ class LoginView extends _i3.PageRouteInfo<void> {
 
   static const String name = 'LoginView';
 
-  static const _i3.PageInfo<void> page = _i3.PageInfo<void>(name);
+  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i3.RepositoryView]
+class RepositoryView extends _i4.PageRouteInfo<void> {
+  const RepositoryView({List<_i4.PageRouteInfo>? children})
+      : super(
+          RepositoryView.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RepositoryView';
+
+  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
 }
