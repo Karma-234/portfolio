@@ -4,10 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ReusableTab extends StatelessWidget {
   final List<String> tabs;
+  final TabController? controller;
   const ReusableTab({
     super.key,
     this.onTap,
     this.tabs = const [],
+    this.controller,
   });
   final Function(int)? onTap;
 
@@ -23,6 +25,7 @@ class ReusableTab extends StatelessWidget {
       ),
       child: TabBar(
         onTap: onTap,
+        controller: controller,
         unselectedLabelStyle: GoogleFonts.inter(
           color: const Color(0xFF7F7EA6),
           fontSize: 12.sp,
@@ -37,7 +40,7 @@ class ReusableTab extends StatelessWidget {
         ),
         indicator: BoxDecoration(
           borderRadius: BorderRadius.circular(26.r),
-          color: const Color(0xFF2A286A),
+          color: Colors.blue,
         ),
         labelColor: Colors.white,
         unselectedLabelColor: const Color(0xFF7F7EA6),

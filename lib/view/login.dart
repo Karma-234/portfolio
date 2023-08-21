@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,6 +15,7 @@ import 'package:portfolio/utils/extensions.dart';
 import 'package:portfolio/utils/password_generator.dart';
 
 import 'package:portfolio/view_model/login/login.dart';
+import 'package:portfolio/widgets/login.dart';
 
 @RoutePage()
 class LoginView extends StatefulWidget {
@@ -57,6 +57,10 @@ class _LoginViewState extends State<LoginView>
                 text: 'Welcome',
                 align: TextAlign.center,
                 color: const Color.fromARGB(255, 30, 116, 187)),
+            ReusableTab(
+              controller: _tabController,
+              onTap: (v) => state.setTab(v),
+            ),
             AppInputField(
               hint: 'Enter email',
               header: 'Email',

@@ -9,6 +9,22 @@ part of 'login.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$LoginState on AbstractLoginState, Store {
+  late final _$tabIndexAtom =
+      Atom(name: 'AbstractLoginState.tabIndex', context: context);
+
+  @override
+  int get tabIndex {
+    _$tabIndexAtom.reportRead();
+    return super.tabIndex;
+  }
+
+  @override
+  set tabIndex(int value) {
+    _$tabIndexAtom.reportWrite(value, super.tabIndex, () {
+      super.tabIndex = value;
+    });
+  }
+
   late final _$emailAtom =
       Atom(name: 'AbstractLoginState.email', context: context);
 
@@ -22,6 +38,22 @@ mixin _$LoginState on AbstractLoginState, Store {
   set email(String value) {
     _$emailAtom.reportWrite(value, super.email, () {
       super.email = value;
+    });
+  }
+
+  late final _$errorAtom =
+      Atom(name: 'AbstractLoginState.error', context: context);
+
+  @override
+  String? get error {
+    _$errorAtom.reportRead();
+    return super.error;
+  }
+
+  @override
+  set error(String? value) {
+    _$errorAtom.reportWrite(value, super.error, () {
+      super.error = value;
     });
   }
 
@@ -77,6 +109,17 @@ mixin _$LoginState on AbstractLoginState, Store {
       ActionController(name: 'AbstractLoginState', context: context);
 
   @override
+  dynamic setTab(int entry) {
+    final _$actionInfo = _$AbstractLoginStateActionController.startAction(
+        name: 'AbstractLoginState.setTab');
+    try {
+      return super.setTab(entry);
+    } finally {
+      _$AbstractLoginStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setEmail(String? entry) {
     final _$actionInfo = _$AbstractLoginStateActionController.startAction(
         name: 'AbstractLoginState.setEmail');
@@ -110,20 +153,11 @@ mixin _$LoginState on AbstractLoginState, Store {
   }
 
   @override
-  dynamic toggleNewUser() {
-    final _$actionInfo = _$AbstractLoginStateActionController.startAction(
-        name: 'AbstractLoginState.toggleNewUser');
-    try {
-      return super.toggleNewUser();
-    } finally {
-      _$AbstractLoginStateActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
+tabIndex: ${tabIndex},
 email: ${email},
+error: ${error},
 password: ${password},
 isLoading: ${isLoading},
 isNewUser: ${isNewUser}

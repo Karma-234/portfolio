@@ -5,7 +5,11 @@ class LoginState = AbstractLoginState with _$LoginState;
 
 abstract class AbstractLoginState with Store {
   @observable
+  int tabIndex = 0;
+  @observable
   String email = '';
+  @observable
+  String? error;
 
   @observable
   String password = '';
@@ -17,12 +21,11 @@ abstract class AbstractLoginState with Store {
   bool isNewUser = false;
 
   @action
+  setTab(int entry) => tabIndex = entry;
+  @action
   setEmail(String? entry) => email = entry ?? '';
   @action
   setPassword(String? entry) => password = entry ?? "";
   @action
   setLoading(bool entry) => isLoading = entry;
-
-  @action
-  toggleNewUser() => isNewUser = !isNewUser;
 }
