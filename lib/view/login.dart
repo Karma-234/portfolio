@@ -41,6 +41,7 @@ class _LoginViewState extends State<LoginView>
   @override
   void dispose() {
     _controller.dispose();
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -99,18 +100,8 @@ class _LoginViewState extends State<LoginView>
             Observer(builder: (context) {
               return AppButton(
                 isLoading: state.isLoading,
-                onPress: () async {
-                  state.setLoading(true);
-
-                  final res = await authService.signUp(
-                      email: state.email, password: state.password);
-                  state.setLoading(false);
-                  if (res == null) {
-                    context.router.popAndPush(const HomeView());
-                  } else {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: AppText(text: res)));
-                  }
+                onPress: () {
+                  _performAuth(context, state);
                 },
               );
             })
@@ -118,5 +109,16 @@ class _LoginViewState extends State<LoginView>
         ),
       ),
     );
+  }
+}
+
+Future<void> _performAuth(BuildContext context, LoginState state) async {
+  await state.authentiacte(
+      index: state.tabIndex, service: locator<AppAuthenticationService>());
+  if (state.error == null) {
+    context.router.popAndPush(const HomeView());
+  } else {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: AppText(text: state.error ?? '')));
   }
 }
