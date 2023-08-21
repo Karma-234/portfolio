@@ -45,7 +45,9 @@ abstract class AbstractLoginState with Store {
       case 1:
         final req = await service.signUp(email: email, password: password);
         error = req;
+        break;
     }
+    storage.addUser(email);
     setLoading(false);
   }
 

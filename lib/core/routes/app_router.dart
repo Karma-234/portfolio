@@ -11,10 +11,10 @@ class AppRouter extends $AppRouter {
   List<AutoRoute> get routes => [
         CustomRoute(
             page: LoginView.page,
+            initial: true,
             transitionsBuilder: TransitionsBuilders.fadeIn),
         CustomRoute(
             page: HomeView.page,
-            initial: true,
             transitionsBuilder: TransitionsBuilders.fadeIn),
         CustomRoute(
             page: RepositoryView.page,

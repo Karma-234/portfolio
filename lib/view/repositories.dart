@@ -9,6 +9,7 @@ import 'package:portfolio/core/routes/app_router.gr.dart';
 import 'package:portfolio/shared_widgets/app_button.dart';
 import 'package:portfolio/shared_widgets/app_text.dart';
 import 'package:portfolio/shared_widgets/details_widget.dart';
+import 'package:portfolio/utils/app_function.dart';
 import 'package:portfolio/utils/extensions.dart';
 import 'package:portfolio/view_model/repositories/repositories.dart';
 
@@ -42,10 +43,16 @@ class RepositoryView extends StatelessWidget {
                       AppText(text: 'An error occurred \n\n ${state.err}'),
                     if (state.err == null)
                       ...[
-                        const UserAccountsDrawerHeader(
-                          currentAccountPicture: Icon(FontAwesomeIcons.user),
-                          accountName: AppText(text: 'Karma-234'),
-                          accountEmail: AppText(text: 'busari1kamal@gmail.com'),
+                        UserAccountsDrawerHeader(
+                          currentAccountPicture: Icon(
+                            FontAwesomeIcons.user,
+                            size: 45.sp,
+                          ),
+                          onDetailsPressed: () =>
+                              appLaunchUrl('www.linkedin.com/in/kamzy-dev'),
+                          accountName: const AppText(text: 'Karma-234'),
+                          accountEmail:
+                              const AppText(text: 'busari1kamal@gmail.com'),
                         ),
                         const AppText(
                           text: 'Public Repositories',

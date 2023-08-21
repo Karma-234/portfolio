@@ -29,21 +29,15 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
   late TabController _tabController;
   late TextEditingController _controller;
-  late AnimationController _animationController;
-  late Animation<double> _doubleController;
 
   late final state = locator<LoginState>();
   late final authService = locator<AppAuthenticationService>();
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 3),
-    )..forward();
-    _doubleController =
-        CurvedAnimation(parent: _animationController, curve: Curves.bounceIn);
+    _controller =
+        TextEditingController(text: locator<LocalStorage>().getUser());
+    state.setEmail(locator<LocalStorage>().getUser());
 
     _tabController = TabController(length: 2, vsync: this);
   }
@@ -52,7 +46,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
   void dispose() {
     _controller.dispose();
     _tabController.dispose();
-    _animationController.dispose();
+
     super.dispose();
   }
 
@@ -65,15 +59,10 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizeTransition(
-              axis: Axis.horizontal,
-              sizeFactor: _doubleController,
-              axisAlignment: -1,
-              child: AppText.xl(
-                  text: 'Welcome',
-                  align: TextAlign.center,
-                  color: const Color.fromARGB(255, 30, 116, 187)),
-            ),
+            AppText.xl(
+                text: 'Welcome',
+                align: TextAlign.center,
+                color: const Color.fromARGB(255, 30, 116, 187)),
             ReusableTab(
               controller: _tabController,
               onTap: (v) => state.setTab(v),
