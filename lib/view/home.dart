@@ -1,9 +1,10 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/core/di/locator.dart';
 import 'package:portfolio/shared_widgets/app_text.dart';
+import 'package:portfolio/utils/app_function.dart';
 import 'package:portfolio/utils/constants.dart';
 import 'package:portfolio/utils/extensions.dart';
 import 'package:portfolio/view_model/login/login.dart';
@@ -45,18 +46,64 @@ class HomeView extends StatelessWidget {
             text: 'Hi ${locator<LoginState>().userName}',
           ),
         ),
-        body: const SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
+        body: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              AboutSection(),
-              ...[
-                AppText(text: 'Projects'),
-              ],
+              const AboutSection(),
+              ...<Widget>[
+                const AppText(text: 'Projects'),
+                ...projects
+                    .map(
+                      (e) => DetailsWidget(
+                        title: e,
+                      ),
+                    )
+                    .toList()
+                    .separate(16.h),
+              ].addPadding(
+                EdgeInsets.symmetric(horizontal: 16.w),
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class DetailsWidget extends StatelessWidget {
+  final String title;
+  final String? description;
+  final String url;
+  final IconData? icon;
+  final VoidCallback? onTap;
+  const DetailsWidget({
+    super.key,
+    this.title = '',
+    this.onTap,
+    this.url = '',
+    this.icon,
+    this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(
+        icon ?? FontAwesomeIcons.rProject,
+      ),
+      onTap: onTap ??
+          () {
+            appLaunchUrl(url);
+          },
+      title: AppText(
+        text: title,
+      ),
+      subtitle: AppText(
+        text: description ?? 'Tap to open live project',
+        weight: FontWeight.w400,
       ),
     );
   }

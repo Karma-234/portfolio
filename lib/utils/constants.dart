@@ -15,3 +15,5 @@ A source of pride lies in my expertise in leveraging the power of Flutter to ove
 
 Seeking an environment that nurtures the growth of both soft and hard skills, fosters creativity, and champions rapid yet high-quality software development, I am excited about the prospect of contributing my coding prowess to your team.
 """;
+
+const projects = ['Pebblescore', 'JINJA Marketplace', 'REXA Financial'];

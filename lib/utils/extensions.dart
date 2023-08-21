@@ -9,6 +9,11 @@ extension ListGutter on List<Widget> {
           [first],
           (r, element) => [...r, Gap(space), element],
         );
+
+  addPadding(EdgeInsetsGeometry edgeInsetsGeometry) => map((e) => Padding(
+        padding: edgeInsetsGeometry,
+        child: e,
+      ));
 }
 
 extension Header on TextFormField {
