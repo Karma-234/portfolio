@@ -15,7 +15,7 @@ class AppText extends StatelessWidget {
 
   const AppText({
     super.key,
-    this.height = 19 / 16,
+    this.height = 19,
     this.size = 16,
     required this.text,
     this.textStyle,
@@ -35,7 +35,7 @@ class AppText extends StatelessWidget {
     return AppText(
       key: key,
       weight: weight,
-      height: 50 / 40,
+      height: 50,
       text: text,
       align: align,
       textStyle: textStyle,
@@ -55,7 +55,7 @@ class AppText extends StatelessWidget {
   }) {
     return AppText(
       key: key,
-      height: 40 / 35,
+      height: 40,
       text: text,
       color: color,
       size: 35.sp,
@@ -75,7 +75,7 @@ class AppText extends StatelessWidget {
   }) {
     return AppText(
       key: key,
-      height: 24 / 20,
+      height: 24,
       size: 20.sp,
       align: align,
       text: text,
@@ -94,7 +94,7 @@ class AppText extends StatelessWidget {
           GoogleFonts.inter(
             fontSize: size.sp,
             fontWeight: weight,
-            height: height,
+            height: height / size,
             color: color,
           ),
     );

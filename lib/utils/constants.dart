@@ -17,3 +17,25 @@ Seeking an environment that nurtures the growth of both soft and hard skills, fo
 """;
 
 const projects = ['Pebblescore', 'JINJA Marketplace', 'REXA Financial'];
+const projectUrls = [
+  'https://apps.apple.com/us/app/pebblescore/id6450597267',
+  'https://play.google.com/store/apps/details?id=com.isidore.jinjaapp&hl=en_US',
+  'https://play.google.com/store/apps/details?id=app.adiba.capitalfield.miya&hl=en',
+];
+
+const certifications = [
+  'Python for AI, Data science and Development',
+  'Continous Integration and Continous Delivery',
+  'Containers with Kubernetes, Docker and OpenShift',
+  'Ios Development with Swift',
+  'Flutter Development',
+  'Backend Development'
+];
+const certificationUrls = [
+  'https://coursera.org/verify/RSMT9G3Y2GR5',
+  'https://coursera.org/verify/X276BVY8EPEU',
+  'https://coursera.org/verify/5Y4V9H6W26LE',
+  'https://coursera.org/verify/DRLECQUTRH5S',
+  'https://coursera.org/share/c7ec9719e8a109be0032b5aab2496305',
+  'https://coursera.org/verify/K8T3K2UR5S3Z'
+];
