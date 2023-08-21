@@ -19,4 +19,5 @@ setUpDependencies() async {
   locator.registerLazySingleton(() => AppAuthenticationService());
   locator.registerLazySingleton(() => LocalStorage());
   locator.registerLazySingleton(() => LoginState());
+  locator<LocalStorage>().initFlutter();
 }

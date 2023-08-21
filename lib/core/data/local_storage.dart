@@ -3,9 +3,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 class LocalStorage {
   Box? storage;
 
-  initFlutter() {
+  initFlutter() async {
     Hive.initFlutter();
-    Hive.openBox('portfolio');
+
+    storage = await Hive.openBox('portfolio');
   }
 
   bool isOldUser() => storage!.containsKey('guest');

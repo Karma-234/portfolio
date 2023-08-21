@@ -46,7 +46,7 @@ class RepositoryView extends StatelessWidget {
                         UserAccountsDrawerHeader(
                           currentAccountPicture: Icon(
                             FontAwesomeIcons.user,
-                            size: 45.sp,
+                            size: 30.sp,
                           ),
                           onDetailsPressed: () =>
                               appLaunchUrl('www.linkedin.com/in/kamzy-dev'),

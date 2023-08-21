@@ -29,13 +29,15 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
   late TabController _tabController;
   late TextEditingController _controller;
+  late TextEditingController _emailController;
 
   late final state = locator<LoginState>();
   late final authService = locator<AppAuthenticationService>();
   @override
   void initState() {
     super.initState();
-    _controller =
+    _controller = TextEditingController();
+    _emailController =
         TextEditingController(text: locator<LocalStorage>().getUser());
     state.setEmail(locator<LocalStorage>().getUser());
 
@@ -46,6 +48,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
   void dispose() {
     _controller.dispose();
     _tabController.dispose();
+    _emailController.dispose();
 
     super.dispose();
   }
@@ -70,6 +73,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
             AppInputField(
               hint: 'Enter email',
               header: 'Email',
+              controller: _emailController,
               onChanged: (value) => state.setEmail(value ?? ''),
             ),
             AppInputField(
@@ -103,11 +107,15 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
               ],
             ),
             Observer(builder: (context) {
-              return AppButton(
-                isLoading: state.isLoading,
-                onPress: () {
-                  _performAuth(context, state);
-                },
+              return Tooltip(
+                message: 'login',
+                child: AppButton(
+                  text: 'Proceed to login',
+                  isLoading: state.isLoading,
+                  onPress: () {
+                    _performAuth(context, state);
+                  },
+                ),
               );
             })
           ].separate(16.h),

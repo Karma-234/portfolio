@@ -11,7 +11,8 @@ appId: com.example.portfolio
     notVisible: "Enter email"
     timeout: 10000
 - assertVisible: "Busari Kamal"
-- scrollUntilVisible: "Backend Development"
+- scrollUntilVisible: 
+    element: "Backend Development"
 - tapOn:
     id: .*floating_action_button.*
 - assertVisible: "Github Profile"
