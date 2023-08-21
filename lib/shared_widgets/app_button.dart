@@ -5,17 +5,20 @@ class AppButton extends StatelessWidget {
   final VoidCallback onPress;
   final bool isLoading;
   final String text;
+  final Color? color;
   const AppButton(
       {super.key,
       required this.onPress,
       this.isLoading = false,
-      this.text = 'Continue'});
+      this.text = 'Continue',
+      this.color});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: isLoading ? null : onPress,
       style: ElevatedButton.styleFrom(
+          backgroundColor: color,
           shape: isLoading
               ? const CircleBorder()
               : const RoundedRectangleBorder()),
