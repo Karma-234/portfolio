@@ -28,4 +28,11 @@ abstract class AbstractLoginState with Store {
   setPassword(String? entry) => password = entry ?? "";
   @action
   setLoading(bool entry) => isLoading = entry;
+
+  @action
+  Future authentiacte() async {}
+
+  @computed
+  String get userName =>
+      '${email.split('@').first.replaceAll(RegExp(r'[!@$#%&^*(+_)]'), '')}-hr';
 }
