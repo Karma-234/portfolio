@@ -15,7 +15,7 @@ import 'package:portfolio/utils/extensions.dart';
 import 'package:portfolio/utils/password_generator.dart';
 
 import 'package:portfolio/view_model/login/login.dart';
-import 'package:portfolio/widgets/login.dart';
+import 'package:portfolio/components/login.dart';
 
 @RoutePage()
 class LoginView extends StatefulWidget {

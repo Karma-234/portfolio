@@ -16,5 +16,8 @@ class AppRouter extends $AppRouter {
             page: HomeView.page,
             initial: true,
             transitionsBuilder: TransitionsBuilders.fadeIn),
+        CustomRoute(
+            page: RepositoryView.page,
+            transitionsBuilder: TransitionsBuilders.fadeIn),
       ];
 }

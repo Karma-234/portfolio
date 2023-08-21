@@ -8,6 +8,8 @@ import 'package:portfolio/utils/constants.dart';
 import 'package:portfolio/utils/extensions.dart';
 import 'package:portfolio/view_model/login/login.dart';
 
+import '../components/about_section.dart';
+
 @RoutePage()
 class HomeView extends StatelessWidget {
   const HomeView({
@@ -43,44 +45,17 @@ class HomeView extends StatelessWidget {
             text: 'Hi ${locator<LoginState>().userName}',
           ),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              color: const Color.fromARGB(255, 48, 112, 164),
-              padding: EdgeInsets.all(12.r),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text.rich(
-                    const TextSpan(
-                      text: 'I\'m Busari Kamal and\n',
-                      children: [
-                        TextSpan(
-                            text: 'I build software solutions for businesses.'),
-                      ],
-                    ),
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.inter(
-                      color: const Color.fromARGB(255, 244, 240, 240),
-                      fontSize: 24.sp,
-                      height: 28 / 24,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const AppText(
-                    text: 'About',
-                    color: Colors.white,
-                    weight: FontWeight.w500,
-                  ),
-                  const AppText(
-                    text: aboutMe,
-                    color: Colors.white,
-                  ),
-                ].separate(16.h),
-              ),
-            ),
-          ],
+        body: const SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              AboutSection(),
+              ...[
+                AppText(text: 'Projects'),
+              ],
+            ],
+          ),
         ),
       ),
     );
