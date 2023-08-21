@@ -6,6 +6,7 @@ class AppText extends StatelessWidget {
   final double height;
   final double size;
   final Color? color;
+  final FontWeight? weight;
 
   final TextAlign? align;
 
@@ -20,20 +21,25 @@ class AppText extends StatelessWidget {
     this.textStyle,
     this.color,
     this.align,
+    this.weight,
   });
 
   static AppText xxl({
     required String text,
     TextStyle? textStyle,
     Color? color,
+    FontWeight? weight,
+    TextAlign? align,
     Key? key,
   }) {
     return AppText(
       key: key,
+      weight: weight,
       height: 50 / 40,
       text: text,
-      textStyle: textStyle ?? GoogleFonts.inter(),
-      color: color ?? Colors.black,
+      align: align,
+      textStyle: textStyle,
+      color: color,
       size: 40.sp,
     );
   }
@@ -44,6 +50,7 @@ class AppText extends StatelessWidget {
     TextStyle? textStyle,
     TextAlign? align,
     Color? color,
+    FontWeight? weight,
     Key? key,
   }) {
     return AppText(
@@ -52,6 +59,7 @@ class AppText extends StatelessWidget {
       text: text,
       color: color,
       size: 35.sp,
+      weight: weight,
       align: align,
     );
   }
@@ -60,14 +68,19 @@ class AppText extends StatelessWidget {
     required VoidCallback onTap,
     required String text,
     Color? color,
+    TextAlign? align,
+    TextStyle? textStyle,
+    FontWeight? weight,
     Key? key,
   }) {
     return AppText(
       key: key,
       height: 24 / 20,
       size: 20.sp,
+      align: align,
       text: text,
-      textStyle: GoogleFonts.inter(),
+      textStyle: textStyle,
+      weight: weight,
       color: color,
     );
   }
@@ -80,6 +93,7 @@ class AppText extends StatelessWidget {
       style: textStyle ??
           GoogleFonts.inter(
             fontSize: size.sp,
+            fontWeight: weight,
             height: height,
             color: color,
           ),

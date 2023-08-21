@@ -29,7 +29,7 @@ class _LoginViewState extends State<LoginView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   late TextEditingController _controller;
-  late final state = LoginState();
+  late final state = locator<LoginState>();
   late final authService = locator<AppAuthenticationService>();
   @override
   void initState() {

@@ -48,5 +48,5 @@ abstract class AbstractLoginState with Store {
 
   @computed
   String get userName =>
-      '${email.split('@').first.replaceAll(RegExp(r'[!@$#%&^*(+_)]'), '')}-hr';
+      '${email.split('@').first.replaceAll(RegExp('(d+)').toString(), '')}-hr';
 }
