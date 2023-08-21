@@ -12,4 +12,5 @@ configureDIo() async {
   final baseOptions =
       BaseOptions(baseUrl: 'https://api.github.com', headers: header);
   dio.options = baseOptions;
+  dio.interceptors.add(LogInterceptor(responseBody: true));
 }
