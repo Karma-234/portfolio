@@ -1,0 +1,17 @@
+
+appId: com.example.portfolio
+---
+- launchApp
+- tapOn: "Enter email"
+- inputText: "busari1kamal@gmail.com"
+- tapOn: "Enter password"
+- inputText: "Ladokite1@"
+- tapOn: "Continue"
+- extendedWaitUntil:
+    notVisible: "Enter email"
+    timeout: 10000
+- assertVisible: "Busari Kamal"
+- scrollUntilVisible: "Backend Development"
+- tapOn:
+    id: .*floating_action_button.*
+- assertVisible: "Github Profile"
