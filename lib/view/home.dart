@@ -4,7 +4,9 @@ import 'package:portfolio/shared_widgets/app_text.dart';
 
 @RoutePage()
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  const HomeView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
