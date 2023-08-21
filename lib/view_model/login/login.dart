@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:portfolio/core/data/local_storage.dart';
 import 'package:portfolio/core/service/auth.dart';
 part 'login.g.dart';
 
@@ -32,7 +33,9 @@ abstract class AbstractLoginState with Store {
 
   @action
   Future<void> authentiacte(
-      {required int index, required AppAuthenticationService service}) async {
+      {required int index,
+      required AppAuthenticationService service,
+      required LocalStorage storage}) async {
     setLoading(true);
     switch (index) {
       case 0:

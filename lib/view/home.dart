@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,6 +45,7 @@ class HomeView extends StatelessWidget {
         ),
         appBar: AppBar(
           elevation: 0,
+          automaticallyImplyLeading: false,
           title: AppText(
             text: 'Hi ${locator<LoginState>().userName}',
           ),

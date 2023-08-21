@@ -1,6 +1,5 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -44,6 +43,7 @@ class RepositoryView extends StatelessWidget {
                     if (state.err == null)
                       ...[
                         const UserAccountsDrawerHeader(
+                          currentAccountPicture: Icon(FontAwesomeIcons.user),
                           accountName: AppText(text: 'Karma-234'),
                           accountEmail: AppText(text: 'busari1kamal@gmail.com'),
                         ),
@@ -64,14 +64,14 @@ class RepositoryView extends StatelessWidget {
                             },
                           ),
                         ),
-                        const Spacer(),
-                        AppButton(
-                            color: Colors.red,
-                            text: 'Logout',
-                            onPress: () => context.router.pushAndPopUntil(
-                                const LoginView(),
-                                predicate: (route) => false)),
+                        // const Spacer(),
                       ].separate(16.h),
+                    AppButton(
+                        color: Colors.red,
+                        text: 'Logout',
+                        onPress: () => context.router.pushAndPopUntil(
+                            const LoginView(),
+                            predicate: (route) => false)),
                   ],
                 ),
         );

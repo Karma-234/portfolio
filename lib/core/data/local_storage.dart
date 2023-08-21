@@ -4,11 +4,10 @@ class LocalStorage {
   Box? storage;
 
   initFlutter() {
-    Hive.initFlutter();
     Hive.openBox('portfolio');
   }
 
-  bool isNewUser() => storage!.containsKey('guest');
+  bool isOldUser() => storage!.containsKey('guest');
 
-  addUser() => storage!.put('guest', true);
+  addUser(String email) => storage!.put('guest', email);
 }

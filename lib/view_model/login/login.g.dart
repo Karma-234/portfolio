@@ -118,9 +118,11 @@ mixin _$LoginState on AbstractLoginState, Store {
 
   @override
   Future<void> authentiacte(
-      {required int index, required AppAuthenticationService service}) {
-    return _$authentiacteAsyncAction
-        .run(() => super.authentiacte(index: index, service: service));
+      {required int index,
+      required AppAuthenticationService service,
+      required LocalStorage storage}) {
+    return _$authentiacteAsyncAction.run(() =>
+        super.authentiacte(index: index, service: service, storage: storage));
   }
 
   late final _$AbstractLoginStateActionController =
